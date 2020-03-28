@@ -1,0 +1,129 @@
+#keyboard {
+    display: block;
+    width: 70%;
+    border: solid 3px gray;
+    padding: 10px;
+    background-color: #fffdf7;
+}
+
+#row_1 {
+    display: flex;
+}
+
+#row_2 {
+    display: flex;
+}
+
+#row_3 {
+    display: flex;
+}
+
+#row_4 {
+    display: flex;
+}
+
+#row_5 {
+    display: flex;
+}
+
+.keyboard_button {
+    height: 40px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3px;
+    background: linear-gradient(to top, #feffc4, #f3e4e4);
+    box-shadow: -1px 0px rgb(218, 218, 217),
+                -1px 1px rgb(234, 233, 223),
+                -2px 1px rgb(220, 219, 212),
+                -2px 2px rgb(234, 234, 230),
+                -3px 2px rgb(199, 198, 185)
+}
+
+.additional-char {
+    color: blue;
+    min-width: 15px;
+}
+
+.main-char {
+    color: darkred;
+    min-width: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+.backspace {
+    flex-grow: 1;
+}
+
+.tab {
+    flex-grow: 0.6;
+}
+
+.delete {
+    flex-grow: 1;
+}
+
+.caps_lock {
+    flex-grow: 0.6;
+}
+
+.enter {
+    flex-grow: 2.3;
+}
+
+.left_shift {
+    flex-grow: 1.3;
+}
+
+.up_arrow {
+    flex-grow: 0.78;
+}
+
+.right_shift {
+    flex-grow: 2;
+}
+
+.left_ctrl {
+    flex-grow: 1;
+}
+
+.win {
+    flex-grow: 1;
+}
+
+.left_alt {
+    flex-grow: 1;
+}
+
+.space {
+    flex-grow: 10;
+}
+
+.right_alt {
+    flex-grow: 1;
+}
+
+.right_ctrl {
+    flex-grow: 1;
+}
+
+.left_arrow {
+    flex-grow: 1;
+}
+
+.down_arrow {
+    flex-grow: 1;
+}
+
+.right_arrow {
+    flex-grow: 1;
+}
+
+.active {
+    background: #e4c5b4;
+}
+
