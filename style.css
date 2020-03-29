@@ -41,8 +41,13 @@
                 -3px 2px rgb(199, 198, 185)
 }
 
+.keyboard_button:hover {
+    background: linear-gradient(to top, #fafc98, #eeb7b7);
+    cursor: pointer;
+}
+
 .additional-char {
-    color: blue;
+    color: darkred;;
     min-width: 15px;
 }
 
@@ -55,75 +60,78 @@
     display: none;
 }
 
-.backspace {
+#backspace {
     flex-grow: 1;
 }
 
-.tab {
+#tab {
     flex-grow: 0.6;
 }
 
-.delete {
+#delete {
     flex-grow: 1;
 }
 
-.caps_lock {
+#capsLock {
     flex-grow: 0.6;
 }
 
-.enter {
+#enter {
     flex-grow: 2.3;
 }
 
-.left_shift {
+#shiftLeft {
     flex-grow: 1.3;
 }
 
-.up_arrow {
-    flex-grow: 0.78;
+#arrowUp {
+    flex-grow: 0.98;
 }
 
-.right_shift {
-    flex-grow: 2;
+#shiftRight {
+    flex-grow: 2.1;
 }
 
-.left_ctrl {
+#ctrlLeft {
     flex-grow: 1;
 }
 
-.win {
+#win {
     flex-grow: 1;
 }
 
-.left_alt {
+#altLeft {
     flex-grow: 1;
 }
 
-.space {
+#space {
     flex-grow: 10;
 }
 
-.right_alt {
+#altRight {
     flex-grow: 1;
 }
 
-.right_ctrl {
+#ctrlRight {
     flex-grow: 1;
 }
 
-.left_arrow {
+#arrowRight {
     flex-grow: 1;
 }
 
-.down_arrow {
+#arrowDown {
     flex-grow: 1;
 }
 
-.right_arrow {
+#arrowRight {
     flex-grow: 1;
 }
 
 .active {
-    background: #e4c5b4;
+    background: #e4c5b4 !important;
 }
 
+.press {
+    background: #e4c5b4 !important;
+}

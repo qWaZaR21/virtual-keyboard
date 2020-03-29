@@ -1,45 +1,45 @@
 const CONFIG = {
-  tilda: {
+  backquote: {
     en_main_elem: '`',
     en_additional_elem: '~',
   },
-  one: {
+  digit1: {
     en_main_elem: '1',
     en_additional_elem: '!',
   },
-  two: {
+  digit2: {
     en_main_elem: '2',
     en_additional_elem: '@',
   },
-  three: {
+  digit3: {
     en_main_elem: '3',
     en_additional_elem: '#',
   },
-  four: {
+  digit4: {
     en_main_elem: '4',
     en_additional_elem: '$',
   },
-  five: {
+  digit5: {
     en_main_elem: '5',
     en_additional_elem: '%',
   },
-  six: {
+  digit6: {
     en_main_elem: '6',
     en_additional_elem: '^',
   },
-  seven: {
+  digit7: {
     en_main_elem: '7',
     en_additional_elem: '&',
   },
-  eight: {
+  digit8: {
     en_main_elem: '8',
     en_additional_elem: '*',
   },
-  nine: {
+  digit9: {
     en_main_elem: '9',
     en_additional_elem: '(',
   },
-  zero: {
+  digit0: {
     en_main_elem: '0',
     en_additional_elem: ')',
   },
@@ -57,97 +57,97 @@ const CONFIG = {
   tab: {
     en_main_elem: 'Tab',
   },
-  q: {
+  keyQ: {
     en_main_elem: 'q',
     en_additional_elem: 'Q',
   },
-  w: {
+  keyW: {
     en_main_elem: 'w',
     en_additional_elem: 'W',
   },
-  e: {
+  keyE: {
     en_main_elem: 'e',
     en_additional_elem: 'E',
   },
-  r: {
+  keyR: {
     en_main_elem: 'r',
     en_additional_elem: 'R',
   },
-  t: {
+  keyT: {
     en_main_elem: 't',
     en_additional_elem: 'T',
   },
-  y: {
+  keyY: {
     en_main_elem: 'y',
     en_additional_elem: 'Y',
   },
-  u: {
+  keyU: {
     en_main_elem: 'u',
     en_additional_elem: 'U',
   },
-  i: {
+  keyI: {
     en_main_elem: 'i',
     en_additional_elem: 'I',
   },
-  o: {
+  keyO: {
     en_main_elem: 'o',
     en_additional_elem: 'O',
   },
-  p: {
+  keyP: {
     en_main_elem: 'p',
     en_additional_elem: 'P',
   },
-  square_bracket_open: {
+  bracketLeft: {
     en_main_elem: '[',
     en_additional_elem: '{',
   },
-  square_bracket_close: {
+  bracketRight: {
     en_main_elem: ']',
     en_additional_elem: '}',
   },
-  right_left_slash: {
+  backSlash: {
     en_main_elem: '\\',
     en_additional_elem: '|',
   },
   delete: {
     en_main_elem: 'Del',
   },
-  caps_lock: {
+  capsLock: {
     en_main_elem: 'CapsLk',
   },
-  a: {
+  keyA: {
     en_main_elem: 'a',
     en_additional_elem: 'A',
   },
-  s: {
+  keyS: {
     en_main_elem: 's',
     en_additional_elem: 'S',
   },
-  d: {
+  keyD: {
     en_main_elem: 'd',
     en_additional_elem: 'D',
   },
-  f: {
+  keyF: {
     en_main_elem: 'f',
     en_additional_elem: 'F',
   },
-  g: {
+  keyG: {
     en_main_elem: 'g',
     en_additional_elem: 'G',
   },
-  h: {
+  keyH: {
     en_main_elem: 'h',
     en_additional_elem: 'H',
   },
-  j: {
+  keyJ: {
     en_main_elem: 'j',
     en_additional_elem: 'J',
   },
-  k: {
+  keyK: {
     en_main_elem: 'k',
     en_additional_elem: 'K',
   },
-  l: {
+  keyL: {
     en_main_elem: 'l',
     en_additional_elem: 'L',
   },
@@ -162,87 +162,86 @@ const CONFIG = {
   enter: {
     en_main_elem: 'Enter',
   },
-  left_shift: {
+  shiftLeft: {
     en_main_elem: 'Shift',
   },
-  z: {
+  keyZ: {
     en_main_elem: 'z',
     en_additional_elem: 'Z',
   },
-  x: {
+  keyX: {
     en_main_elem: 'x',
     en_additional_elem: 'X',
   },
-  c: {
+  keyC: {
     en_main_elem: 'c',
     en_additional_elem: 'C',
   },
-  v: {
+  keyV: {
     en_main_elem: 'v',
     en_additional_elem: 'V',
   },
-  b: {
+  keyB: {
     en_main_elem: 'b',
     en_additional_elem: 'B',
   },
-  n: {
+  keyN: {
     en_main_elem: 'n',
     en_additional_elem: 'N',
   },
-  m: {
+  keyM: {
     en_main_elem: 'm',
     en_additional_elem: 'M',
   },
-  dot: {
+  comma: {
     en_main_elem: ',',
     en_additional_elem: '<',
   },
-  comma: {
+  period: {
     en_main_elem: '.',
     en_additional_elem: '>',
   },
-  right_right_slash: {
+  slash: {
     en_main_elem: '/',
     en_additional_elem: '?',
   },
-  up_arrow: {
+  arrowUp: {
     en_main_elem: '/\\',
   },
-  right_shift: {
+  shiftRight: {
     en_main_elem: 'Shift',
   },
-  left_ctrl: {
+  controlLeft: {
     en_main_elem: 'Ctrl',
   },
-  win: {
+  metaLeft: {
     en_main_elem: 'Win',
   },
-  left_alt: {
+  altLeft: {
     en_main_elem: 'Alt',
   },
   space: {
     en_main_elem: ' ',
   },
-  right_alt: {
+  altRight: {
     en_main_elem: 'Alt',
   },
-  left_arrow: {
+  arrowLeft: {
     en_main_elem: '<',
   },
-  down_arrow: {
+  arrowDown: {
     en_main_elem: '\\/',
   },
-  right_arrow: {
+  arrowRight: {
     en_main_elem: '>',
   },
-  right_ctrl: {
+  controlRight: {
     en_main_elem: 'Ctrl',
   },
 };
 
 const BODY = document.getElementsByTagName('body')[0];
-const SHIFT_BUTTON = document.getElementsByClassName('left_shift');
-const CHAR_BUTTONS = document.getElementsByClassName('char');
+// const BUTTONS = Array.from(document.getElementsByClassName('keyboard_button'));
 
 let keyboard;
 
@@ -276,12 +275,12 @@ const createButton = (mainChar, additionalChar, buttonName) => {
     button.prepend(additionalCharDiv);
 
     button.classList.add('char');
-  } else {
-    button.classList.add(buttonName);
   }
 
   mainCharDiv.innerText = mainChar;
   button.prepend(mainCharDiv);
+
+  button.id = buttonName;
 
   return button;
 };
@@ -298,15 +297,40 @@ const addButtonsToThePage = () => {
   }
 };
 
-
 createDomTree();
 addButtonsToThePage();
 
+const KEYBOARD = document.getElementById('keyboard');
+const CHAR_BUTTONS = document.getElementsByClassName('char');
+const SHIFT_BUTTON = document.getElementById('shiftLeft');
 
-SHIFT_BUTTON[0].addEventListener('click', () => {
+SHIFT_BUTTON.addEventListener('click', () => {
   Array.from(CHAR_BUTTONS).forEach((el) => {
     el.getElementsByClassName('main-char')[0].classList.toggle('hidden');
     el.getElementsByClassName('additional-char')[0].classList.toggle('hidden');
   });
-  SHIFT_BUTTON[0].classList.toggle('active');
+  SHIFT_BUTTON.classList.toggle('active');
+});
+
+KEYBOARD.addEventListener('click', (event) => {
+  if (event.target.classList.contains('keyboard_button')) {
+    event.target.classList.add('press');
+    setTimeout(() => event.target.classList.remove('press'), 200);
+  }
+  if (event.target.parentNode.classList.contains('keyboard_button') || event.target.classList.contains('additional-char')) {
+    event.target.parentNode.classList.add('press');
+    setTimeout(() => event.target.parentNode.classList.remove('press'), 200);
+  }
+});
+
+KEYBOARD.addEventListener('selectstart', (event) => {
+  event.preventDefault();
+  return false;
+});
+
+const firstLetterToLowetCase = (string) => string[0].toLowerCase() + string.slice(1, string.length);
+
+document.addEventListener('keydown', (event) => {
+  document.getElementById(firstLetterToLowetCase(event.code)).classList.add('press');
+  setTimeout(() => document.getElementById(firstLetterToLowetCase(event.code)).classList.remove('press'), 200);
 });
