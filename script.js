@@ -222,6 +222,7 @@ const CONFIG = {
   },
   space: {
     en_main_elem: ' ',
+    en_additional_elem: ' ',
   },
   altRight: {
     en_main_elem: 'Alt',
@@ -242,8 +243,11 @@ const CONFIG = {
 
 const BODY = document.getElementsByTagName('body')[0];
 // const BUTTONS = Array.from(document.getElementsByClassName('keyboard_button'));
+// const FUNCTION_BUTTONS_NAME_ARRAY = ['capsLock', 'shiftLeft', 'shiftRight', 'controlLeft', 'altLeft', 'altRight', 'controlRight'];
+const FIRST_ROW_NAME_BUTTONS = ['backquote', 'digit1', 'digit2', 'digit3', 'digit4', 'digit5', 'digit6', 'digit7', 'digit8', 'digit9', 'digit0', 'minus', 'equal', 'backspace'];
 
 let keyboard;
+let stringResult = '';
 
 const createDomTree = () => {
   keyboard = document.createElement('div');
@@ -274,13 +278,28 @@ const createButton = (mainChar, additionalChar, buttonName) => {
 
     button.prepend(additionalCharDiv);
 
-    button.classList.add('char');
+    if (FIRST_ROW_NAME_BUTTONS.find((elem) => elem === buttonName)) {
+      button.classList.add('specific-char');
+    } else {
+      button.classList.add('char');
+    }
   }
 
   mainCharDiv.innerText = mainChar;
   button.prepend(mainCharDiv);
 
   button.id = buttonName;
+
+  if (button.classList.contains('char')) {
+    button.addEventListener('mousedown', () => {
+      button.classList.add('press');
+      stringResult += button.firstChild.firstChild.nodeValue;
+    });
+
+    button.addEventListener('mouseup', () => {
+      button.classList.remove('press');
+    });
+  }
 
   return button;
 };
@@ -301,36 +320,62 @@ createDomTree();
 addButtonsToThePage();
 
 const KEYBOARD = document.getElementById('keyboard');
-const CHAR_BUTTONS = document.getElementsByClassName('char');
-const SHIFT_BUTTON = document.getElementById('shiftLeft');
+const CHAR_BUTTONS = document.querySelectorAll('.char');
+const SPECIFIC_CHAR_BUTTONS = document.querySelectorAll('.specific-char');
+const SHIFT_LEFT_BUTTON = document.getElementById('shiftLeft');
+const SHIFT_RIGHT_BUTTON = document.getElementById('shiftRight');
+const CAPS_LOCK_BUTTON = document.getElementById('capsLock');
 
-SHIFT_BUTTON.addEventListener('click', () => {
-  Array.from(CHAR_BUTTONS).forEach((el) => {
-    el.getElementsByClassName('main-char')[0].classList.toggle('hidden');
-    el.getElementsByClassName('additional-char')[0].classList.toggle('hidden');
+const firstLetterToLowetCase = (string) => string[0].toLowerCase() + string.slice(1, string.length);
+
+SHIFT_LEFT_BUTTON.addEventListener('click', (event) => {
+  if (!SHIFT_RIGHT_BUTTON.classList.contains('active')) {
+    CHAR_BUTTONS.forEach((el) => {
+      el.querySelector('.main-char').classList.toggle('hidden');
+      el.querySelector('.additional-char').classList.toggle('hidden');
+    });
+    SPECIFIC_CHAR_BUTTONS.forEach((el) => {
+      el.querySelector('.main-char').classList.toggle('hidden');
+      el.querySelector('.additional-char').classList.toggle('hidden');
+    });
+  }
+  event.currentTarget.classList.toggle('active');
+});
+
+SHIFT_RIGHT_BUTTON.addEventListener('click', (event) => {
+  if (!SHIFT_LEFT_BUTTON.classList.contains('active')) {
+    CHAR_BUTTONS.forEach((el) => {
+      el.querySelector('.main-char').classList.toggle('hidden');
+      el.querySelector('.additional-char').classList.toggle('hidden');
+    });
+    SPECIFIC_CHAR_BUTTONS.forEach((el) => {
+      el.querySelector('.main-char').classList.toggle('hidden');
+      el.querySelector('.additional-char').classList.toggle('hidden');
+    });
+  }
+  event.currentTarget.classList.toggle('active');
+});
+
+CAPS_LOCK_BUTTON.addEventListener('click', (event) => {
+  CHAR_BUTTONS.forEach((el) => {
+    el.querySelector('.main-char').classList.toggle('hidden');
+    el.querySelector('.additional-char').classList.toggle('hidden');
   });
-  SHIFT_BUTTON.classList.toggle('active');
+  event.currentTarget.classList.toggle('active');
 });
 
-KEYBOARD.addEventListener('click', (event) => {
-  if (event.target.classList.contains('keyboard_button')) {
-    event.target.classList.add('press');
-    setTimeout(() => event.target.classList.remove('press'), 200);
-  }
-  if (event.target.parentNode.classList.contains('keyboard_button') || event.target.classList.contains('additional-char')) {
-    event.target.parentNode.classList.add('press');
-    setTimeout(() => event.target.parentNode.classList.remove('press'), 200);
-  }
-});
-
+// отключение выделения текста
 KEYBOARD.addEventListener('selectstart', (event) => {
   event.preventDefault();
   return false;
 });
 
-const firstLetterToLowetCase = (string) => string[0].toLowerCase() + string.slice(1, string.length);
-
+// обработка физ. клавиатуры
 document.addEventListener('keydown', (event) => {
   document.getElementById(firstLetterToLowetCase(event.code)).classList.add('press');
   setTimeout(() => document.getElementById(firstLetterToLowetCase(event.code)).classList.remove('press'), 200);
 });
+
+const activateCtrlAltButtons = (event) => {
+  
+};
