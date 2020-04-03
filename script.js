@@ -222,7 +222,7 @@ const CONFIG = {
   },
   space: {
     en_main_elem: ' ',
-    en_additional_elem: ' ',
+    // en_additional_elem: ' ',
   },
   altRight: {
     en_main_elem: 'Alt',
@@ -247,20 +247,30 @@ const BODY = document.getElementsByTagName('body')[0];
 const FIRST_ROW_NAME_BUTTONS = ['backquote', 'digit1', 'digit2', 'digit3', 'digit4', 'digit5', 'digit6', 'digit7', 'digit8', 'digit9', 'digit0', 'minus', 'equal', 'backspace'];
 
 let keyboard;
-let stringResult = '';
+const stringResult = '';
 
 const createDomTree = () => {
+  const textArea = document.createElement('textarea');
+  textArea.autofocus = true;
+  textArea.id = 'display';
+
+  textArea.addEventListener('blur', () => {
+    textArea.focus();
+  });
+
   keyboard = document.createElement('div');
   keyboard.id = 'keyboard';
 
-  for (let i = 0; i < 5; i++) {
+  BODY.append(textArea);
+
+  for (let i = 0; i < 5; i += 1) {
     const rowDiv = document.createElement('div');
     rowDiv.id = `row_${i + 1}`;
 
     keyboard.append(rowDiv);
   }
 
-  BODY.prepend(keyboard);
+  BODY.append(keyboard);
 };
 
 const createButton = (mainChar, additionalChar, buttonName) => {
@@ -290,10 +300,20 @@ const createButton = (mainChar, additionalChar, buttonName) => {
 
   button.id = buttonName;
 
-  if (button.classList.contains('char')) {
+  if (button.classList.contains('char') || button.classList.contains('specific-char')) {
     button.addEventListener('mousedown', () => {
       button.classList.add('press');
-      stringResult += button.firstChild.firstChild.nodeValue;
+
+      if (document.getElementsByClassName('active-ctrl').length >= 1 || document.getElementsByClassName('active-alt').length >= 1) deactivCtrlAltButtons();
+
+      if (button.firstChild.classList.contains('hidden')) {
+        TEXT_AREA.setRangeText(button.lastChild.innerText, TEXT_AREA.selectionStart, TEXT_AREA.selectionEnd);
+      } else {
+        TEXT_AREA.setRangeText(button.firstChild.innerText, TEXT_AREA.selectionStart, TEXT_AREA.selectionEnd);
+      }
+
+      TEXT_AREA.selectionEnd += 1;
+      TEXT_AREA.selectionStart = TEXT_AREA.selectionEnd;
     });
 
     button.addEventListener('mouseup', () => {
@@ -319,16 +339,48 @@ const addButtonsToThePage = () => {
 createDomTree();
 addButtonsToThePage();
 
+const TEXT_AREA = document.querySelector('#display');
 const KEYBOARD = document.getElementById('keyboard');
 const CHAR_BUTTONS = document.querySelectorAll('.char');
 const SPECIFIC_CHAR_BUTTONS = document.querySelectorAll('.specific-char');
 const SHIFT_LEFT_BUTTON = document.getElementById('shiftLeft');
 const SHIFT_RIGHT_BUTTON = document.getElementById('shiftRight');
 const CAPS_LOCK_BUTTON = document.getElementById('capsLock');
+const CTRL_LEFT_BUTTON = document.getElementById('controlLeft');
+const CTRL_RIGHT_BUTTON = document.getElementById('controlRight');
+const ALT_LEFT_BUTTON = document.getElementById('altLeft');
+const ALT_RIGHT_BUTTON = document.getElementById('altRight');
+const SPACE_BUTTON = document.getElementById('space');
+const ARROW_UP_BUTTON = document.getElementById('arrowUp');
+const ARROW_LEFT_BUTTON = document.getElementById('arrowLeft');
+const ARROW_RIGHT_BUTTON = document.getElementById('arrowRight');
+const ARROW_DOWN_BUTTON = document.getElementById('arrowDown');
+const ENTER_BUTTON = document.getElementById('enter');
+const BACKSPACE_BUTTON = document.getElementById('backspace');
+const DELETE_BUTTON = document.getElementById('delete');
 
-const firstLetterToLowetCase = (string) => string[0].toLowerCase() + string.slice(1, string.length);
+
+
+
+const firstLetterToLowetCase = (string) => (string ? string[0].toLowerCase() + string.slice(1, string.length) : string);
+
+const deactivCtrlAltButtons = () => {
+  CTRL_LEFT_BUTTON.classList.remove('active-ctrl');
+  CTRL_RIGHT_BUTTON.classList.remove('active-ctrl');
+  ALT_LEFT_BUTTON.classList.remove('active-alt');
+  ALT_RIGHT_BUTTON.classList.remove('active-alt');
+};
 
 SHIFT_LEFT_BUTTON.addEventListener('click', (event) => {
+
+  if (document.getElementsByClassName('active-ctrl').length > 0) {
+    (localStorage.getItem('lang') === 'en' || localStorage.getItem('lang') === null) ? localStorage.setItem('lang', 'ru') : localStorage.setItem('lang', 'en');
+    SHIFT_LEFT_BUTTON.classList.add('press');
+    setTimeout(() => SHIFT_LEFT_BUTTON.classList.remove('press'), 200);
+    deactivCtrlAltButtons();
+    return;
+  }
+
   if (!SHIFT_RIGHT_BUTTON.classList.contains('active')) {
     CHAR_BUTTONS.forEach((el) => {
       el.querySelector('.main-char').classList.toggle('hidden');
@@ -372,10 +424,68 @@ KEYBOARD.addEventListener('selectstart', (event) => {
 
 // обработка физ. клавиатуры
 document.addEventListener('keydown', (event) => {
+  console.log(event);
+
   document.getElementById(firstLetterToLowetCase(event.code)).classList.add('press');
   setTimeout(() => document.getElementById(firstLetterToLowetCase(event.code)).classList.remove('press'), 200);
 });
 
-const activateCtrlAltButtons = (event) => {
-  
-};
+CTRL_LEFT_BUTTON.addEventListener('click', () => {
+  CTRL_LEFT_BUTTON.classList.toggle('active-ctrl');
+  CTRL_RIGHT_BUTTON.classList.toggle('active-ctrl');
+});
+
+CTRL_RIGHT_BUTTON.addEventListener('click', () => {
+  CTRL_LEFT_BUTTON.classList.toggle('active-ctrl');
+  CTRL_RIGHT_BUTTON.classList.toggle('active-ctrl');
+});
+
+ALT_LEFT_BUTTON.addEventListener('click', () => {
+  ALT_LEFT_BUTTON.classList.toggle('active-alt');
+  ALT_RIGHT_BUTTON.classList.toggle('active-alt');
+});
+
+ALT_RIGHT_BUTTON.addEventListener('click', () => {
+  ALT_LEFT_BUTTON.classList.toggle('active-alt');
+  ALT_RIGHT_BUTTON.classList.toggle('active-alt');
+});
+
+SPACE_BUTTON.addEventListener('click', () => {
+  TEXT_AREA.setRangeText(SPACE_BUTTON.firstChild.innerHTML, TEXT_AREA.selectionStart, TEXT_AREA.selectionEnd);
+  TEXT_AREA.selectionEnd += 1;
+  TEXT_AREA.selectionStart = TEXT_AREA.selectionEnd;
+});
+
+ARROW_LEFT_BUTTON.addEventListener('click', () => {
+  TEXT_AREA.selectionEnd -= 1;
+  TEXT_AREA.selectionStart = TEXT_AREA.selectionEnd;
+});
+
+ARROW_RIGHT_BUTTON.addEventListener('click', () => {
+  TEXT_AREA.selectionEnd += 1;
+  TEXT_AREA.selectionStart = TEXT_AREA.selectionEnd;
+});
+
+ARROW_UP_BUTTON.addEventListener('click', () => {
+  TEXT_AREA.selectionEnd = 0;
+  TEXT_AREA.selectionStart = TEXT_AREA.selectionEnd;
+});
+
+ARROW_DOWN_BUTTON.addEventListener('click', () => {
+  TEXT_AREA.selectionEnd = TEXT_AREA.value.length;
+  TEXT_AREA.selectionStart = TEXT_AREA.selectionEnd;
+});
+
+ENTER_BUTTON.addEventListener('click', () => {
+  TEXT_AREA.setRangeText('\n', TEXT_AREA.selectionStart, TEXT_AREA.selectionEnd);
+  TEXT_AREA.selectionEnd += 1;
+  TEXT_AREA.selectionStart = TEXT_AREA.selectionEnd;
+});
+
+BACKSPACE_BUTTON.addEventListener('click', () => {
+  TEXT_AREA.setRangeText('', TEXT_AREA.selectionStart - 1, TEXT_AREA.selectionEnd);
+});
+
+DELETE_BUTTON.addEventListener('click', () => {
+  TEXT_AREA.setRangeText('', TEXT_AREA.selectionStart, TEXT_AREA.selectionEnd + 1);
+});
