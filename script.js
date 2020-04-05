@@ -383,6 +383,12 @@ const createDomTree = () => {
   }
 
   BODY.append(keyboard);
+
+  const message = document.createElement('div');
+  message.id = 'message';
+  message.innerText = 'CTRL + SHIFT - переключение языка';
+
+  BODY.append(message);
 };
 
 const clearKeyboardRow = () => {

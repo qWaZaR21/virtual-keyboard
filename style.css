@@ -4,6 +4,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background: #ab9b9b;
 }
 
 #display {
@@ -11,6 +12,7 @@ body {
     min-height: 70px;
     border: solid 3px #c3afaf;
     padding: 10px;
+    margin: 20px;
 }
 
 #keyboard {
@@ -19,6 +21,7 @@ body {
     border: solid 3px gray;
     padding: 10px;
     background-color: #fffdf7;
+    margin: 20px;
 }
 
 #row_1 {
@@ -64,11 +67,15 @@ body {
 .additional-char {
     color: darkred;;
     min-width: 15px;
+    display: flex;
+    justify-content: center;
 }
 
 .main-char {
     color: darkred;
     min-width: 15px;
+    display: flex;
+    justify-content: center;
 }
 
 .hidden {
